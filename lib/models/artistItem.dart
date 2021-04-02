@@ -1,10 +1,10 @@
 class ArtistItem {
-  int _artistId;
+  int _id;
   String _artistName;
 
   /*Setter untuk memasukkan nilai
   getter untuk mengambil nilai */
-  int get artistId => this._artistId;
+  int get id => this._id;
 
   get artistName => this._artistName;
   set artistName(value) => this._artistName = value;
@@ -14,14 +14,14 @@ class ArtistItem {
 
   // konstruktor versi 2: konversi dari Map ke ArtistItem
   ArtistItem.fromMap(Map<String, dynamic> map) {
-    this._artistId = map['artistId'];
+    this._id = map['id'];
     this._artistName = map['artistName'];
   }
 
   // konversi dari ArtistItem ke Map
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = Map<String, dynamic>();
-    map['artistId'] = this._artistId;
+    map['id'] = this._id;
     map['artistName'] = artistName;
     return map;
   }
