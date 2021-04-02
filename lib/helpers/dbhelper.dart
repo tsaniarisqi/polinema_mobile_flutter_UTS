@@ -28,7 +28,7 @@ class DbHelper {
     // tabel artistItem
     await batchTemp.execute('''CREATE TABLE artistItem (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
-          artistName TEXT)''');
+          name TEXT)''');
     // tabel songItem
     await batchTemp.execute('''CREATE TABLE songItem(
           id INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -42,7 +42,7 @@ class DbHelper {
   //select data tabel ArtistItem
   Future<List<Map<String, dynamic>>> selectArtistItem() async {
     Database db = await this.initDb();
-    var mapList = await db.query('artistItem', orderBy: 'artistName');
+    var mapList = await db.query('artistItem', orderBy: 'name');
     return mapList;
   }
 
