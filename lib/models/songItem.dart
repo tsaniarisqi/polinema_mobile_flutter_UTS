@@ -4,7 +4,7 @@ class SongItem {
   String _title;
   String _writer;
 
-  int get songId => this._id;
+  int get id => this._id;
 
   get artistId => this._artistId;
 
