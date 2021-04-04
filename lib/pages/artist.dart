@@ -31,30 +31,27 @@ class ArtistState extends State<Artist> {
       appBar: AppBar(
         title: Text('Artist'),
       ),
-      body: Column(children: [
-        Expanded(
-          child: createListView(),
-        ),
-        Container(
-          alignment: Alignment.bottomCenter,
-          child: SizedBox(
-            width: double.infinity,
-            child: RaisedButton(
-              child: Text("Add Artist"),
-              onPressed: () async {
-                var item = await navigateToEntryForm(context, null);
-                if (item != null) {
-                  //TODO 2 Panggil Fungsi untuk Insert ke DB
-                  int result = await dbHelper.insertArtistItem(item);
-                  if (result > 0) {
-                    updateListView();
-                  }
-                }
-              },
-            ),
+      body: Column(
+        children: [
+          Expanded(
+            child: createListView(),
           ),
-        ),
-      ]),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        tooltip: 'Add Artist',
+        onPressed: () async {
+          var item = await navigateToEntryForm(context, null);
+          if (item != null) {
+            //TODO 2 Panggil Fungsi untuk Insert ke DB
+            int result = await dbHelper.insertArtistItem(item);
+            if (result > 0) {
+              updateListView();
+            }
+          }
+        },
+      ),
     );
   }
 
@@ -81,6 +78,7 @@ class ArtistState extends State<Artist> {
           elevation: 2.0,
           margin: EdgeInsets.all(8),
           child: ListTile(
+            // widget yang akan menampilkan sebelum title
             leading: CircleAvatar(
               backgroundColor: Colors.black,
               child: Icon(Icons.account_circle),
@@ -89,19 +87,28 @@ class ArtistState extends State<Artist> {
               this.itemList[index].name,
               style: textStyle,
             ),
-            trailing: GestureDetector(
-              child: Icon(Icons.delete),
-              onTap: () async {
-                //TODO 3 Panggil Fungsi untuk Delete dari DB berdasarkan Item
-                deleteItem(itemList[index]);
-              },
+            // widget yang akan menampilkan setelah title
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: () async {
+                    var item = await navigateToEntryForm(
+                        context, this.itemList[index]);
+                    //TODO 4 Panggil Fungsi untuk Edit data
+                    if (item != null) editItem(item);
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: () async {
+                    //TODO 3 Panggil Fungsi untuk Delete dari DB berdasarkan Item
+                    deleteItem(itemList[index]);
+                  },
+                ),
+              ],
             ),
-            onTap: () async {
-              var item =
-                  await navigateToEntryForm(context, this.itemList[index]);
-              //TODO 4 Panggil Fungsi untuk Edit data
-              if (item != null) editItem(item);
-            },
           ),
         );
       },
