@@ -1,20 +1,20 @@
-import 'package:daftar_lagu/form/artistentryform.dart';
-import 'package:daftar_lagu/helpers/dbHelper.dart';
-import 'package:daftar_lagu/models/artistItem.dart';
-import 'package:daftar_lagu/pages/song.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:daftar_lagu/form/songentryform.dart';
+import 'package:daftar_lagu/helpers/dbhelper.dart';
+import 'package:daftar_lagu/models/songItem.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:sqflite/sqflite.dart';
 
-class Artist extends StatefulWidget {
+class Song extends StatefulWidget {
+  
   @override
-  ArtistState createState() => ArtistState();
+  SongState createState() => SongState();
 }
 
-class ArtistState extends State<Artist> {
+class SongState extends State<Song> {
   DbHelper dbHelper = DbHelper();
   int count = 0;
-  List<ArtistItem> itemList;
+  List<SongItem> itemList;
 
   @override
   // untuk menampilkan data yang sudah diisikan
@@ -26,11 +26,11 @@ class ArtistState extends State<Artist> {
   @override
   Widget build(BuildContext context) {
     if (itemList == null) {
-      itemList = List<ArtistItem>();
+      itemList = List<SongItem>();
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text('Artist'),
+        title: Text('Song'),
       ),
       body: Column(
         children: [
@@ -41,12 +41,12 @@ class ArtistState extends State<Artist> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        tooltip: 'Add Artist',
+        tooltip: 'Add Song',
         onPressed: () async {
           var item = await navigateToEntryForm(context, null);
           if (item != null) {
             //TODO 2 Panggil Fungsi untuk Insert ke DB
-            int result = await dbHelper.insertArtistItem(item);
+            int result = await dbHelper.insertSongItem(item);
             if (result > 0) {
               updateListView();
             }
@@ -56,13 +56,13 @@ class ArtistState extends State<Artist> {
     );
   }
 
-  Future<ArtistItem> navigateToEntryForm(
-      BuildContext context, ArtistItem artistItem) async {
+  Future<SongItem> navigateToEntryForm(
+      BuildContext context, SongItem songItem) async {
     var result = await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (BuildContext context) {
-          return ArtistEntryForm(artistItem);
+          return SongEntryForm(songItem);
         },
       ),
     );
@@ -82,10 +82,10 @@ class ArtistState extends State<Artist> {
             // widget yang akan menampilkan sebelum title
             leading: CircleAvatar(
               backgroundColor: Colors.black,
-              child: Icon(Icons.account_circle),
+              child: Icon(Icons.music_note),
             ),
             title: Text(
-              this.itemList[index].name,
+              this.itemList[index].title,
               style: textStyle,
             ),
             // widget yang akan menampilkan setelah title
@@ -110,13 +110,6 @@ class ArtistState extends State<Artist> {
                 ),
               ],
             ),
-            onTap: () async {
-              // Navigator.pushNamed(context, '/item');
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Song()),
-              );
-            },
           ),
         );
       },
@@ -124,16 +117,16 @@ class ArtistState extends State<Artist> {
   }
 
   //delete Item
-  void deleteItem(ArtistItem object) async {
-    int result = await dbHelper.deleteArtistItem(object.id);
+  void deleteItem(SongItem object) async {
+    int result = await dbHelper.deleteSongItem(object.id);
     if (result > 0) {
       updateListView();
     }
   }
 
   //edit data
-  void editItem(ArtistItem object) async {
-    int result = await dbHelper.updateArtistItem(object);
+  void editItem(SongItem object) async {
+    int result = await dbHelper.updateSongItem(object);
     if (result > 0) {
       updateListView();
     }
@@ -144,7 +137,7 @@ class ArtistState extends State<Artist> {
     final Future<Database> dbFuture = dbHelper.initDb();
     dbFuture.then((database) {
       //TODO 1 Select data dari DB
-      Future<List<ArtistItem>> itemListFuture = dbHelper.getArtistItemList();
+      Future<List<SongItem>> itemListFuture = dbHelper.getSongItemList();
       itemListFuture.then((itemList) {
         setState(() {
           this.itemList = itemList;

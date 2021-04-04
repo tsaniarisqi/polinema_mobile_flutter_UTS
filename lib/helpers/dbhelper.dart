@@ -1,4 +1,4 @@
-import 'dart:io';
+// import 'dart:io';
 
 import 'package:daftar_lagu/models/artistItem.dart';
 import 'package:daftar_lagu/models/songItem.dart';
@@ -49,7 +49,7 @@ class DbHelper {
   //select data tabel SongItem
   Future<List<Map<String, dynamic>>> selectSongItem() async {
     Database db = await this.initDb();
-    var mapList = await db.query('songtItem', orderBy: 'title');
+    var mapList = await db.query('songItem', orderBy: 'title');
     return mapList;
   }
 
@@ -116,6 +116,8 @@ class DbHelper {
     }
     return itemList;
   }
+
+
 
   factory DbHelper() {
     if (_dbHelper == null) {
