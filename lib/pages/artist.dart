@@ -40,6 +40,7 @@ class ArtistState extends State<Artist> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        foregroundColor: Colors.black,
         child: Icon(Icons.add),
         tooltip: 'Add Artist',
         onPressed: () async {
@@ -110,13 +111,6 @@ class ArtistState extends State<Artist> {
                 ),
               ],
             ),
-            onTap: () async {
-              // Navigator.pushNamed(context, '/item');
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Song()),
-              );
-            },
           ),
         );
       },

@@ -1,4 +1,4 @@
-import 'package:daftar_lagu/pages/artist.dart';
+import 'package:daftar_lagu/pages/home.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -11,9 +11,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
       ),
-      home: Artist(),
+      home: Home(),
     );
   }
 }

@@ -75,11 +75,10 @@ class SongEntryFormState extends State<SongEntryForm> {
                   // tombol simpan
                   Expanded(
                     child: RaisedButton(
-                      color: Theme.of(context).primaryColorDark,
-                      textColor: Theme.of(context).primaryColorLight,
+                      color: Colors.yellow[600],
                       child: Text(
                         'Save',
-                        textScaleFactor: 1.5,
+                        textScaleFactor: 1,
                       ),
                       onPressed: () {
                         if (songItem == null) {
@@ -104,11 +103,10 @@ class SongEntryFormState extends State<SongEntryForm> {
                   // tombol batal
                   Expanded(
                     child: RaisedButton(
-                      color: Theme.of(context).primaryColorDark,
-                      textColor: Theme.of(context).primaryColorLight,
+                      color: Colors.yellow[600],
                       child: Text(
                         'Cancel',
-                        textScaleFactor: 1.5,
+                        textScaleFactor: 1,
                       ),
                       onPressed: () {
                         Navigator.pop(context);

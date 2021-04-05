@@ -6,7 +6,6 @@ import 'package:flutter/widgets.dart';
 import 'package:sqflite/sqflite.dart';
 
 class Song extends StatefulWidget {
-  
   @override
   SongState createState() => SongState();
 }
@@ -40,6 +39,7 @@ class SongState extends State<Song> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        foregroundColor: Colors.black,
         child: Icon(Icons.add),
         tooltip: 'Add Song',
         onPressed: () async {
