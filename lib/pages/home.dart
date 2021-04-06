@@ -10,40 +10,42 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home'),
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            height: 60,
-            width: 120,
-            margin: EdgeInsets.only(top: 300, right: 10),
-            child: RaisedButton(
-              color: Colors.yellow[600],
-              child: Text("Song", style: TextStyle(fontSize: 20)),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Song()),
-                );
-              },
+      body: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              height: 60,
+              width: 120,
+              margin: EdgeInsets.only(right: 10),
+              child: RaisedButton(
+                color: Colors.yellow[600],
+                child: Text("Song", style: TextStyle(fontSize: 20)),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Song()),
+                  );
+                },
+              ),
             ),
-          ),
-          Container(
-            height: 60,
-            width: 120,
-            margin: EdgeInsets.only(top: 300, left: 10),
-            child: RaisedButton(
-              color: Colors.yellow[600],
-              child: Text("Artist", style: TextStyle(fontSize: 20)),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Artist()),
-                );
-              },
+            Container(
+              height: 60,
+              width: 120,
+              margin: EdgeInsets.only(left: 10),
+              child: RaisedButton(
+                color: Colors.yellow[600],
+                child: Text("Artist", style: TextStyle(fontSize: 20)),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Artist()),
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
