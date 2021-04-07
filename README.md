@@ -1,16 +1,39 @@
-# daftar_lagu
+# UTS - Daftar Lagu
 
-A new Flutter project.
+## Halaman Home
 
-## Getting Started
+Pada halaman home terdapat 2 button artist dan button song
 
-This project is a starting point for a Flutter application.
+![plot](./images/1.jpeg)
 
-A few resources to get you started if this is your first Flutter project:
+## Halaman Artist
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Pada halaman artist ini untuk menampilkan data artist yang telah ditambahkan. Pada halaman ini juga dapat melakukan penghapusan data, yaitu dengan mengklik icon tempat sampah.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![plot](./images/2.jpeg)
+
+Untuk menambahkan data artist, klik button add pada pojok kanan bawah. Kemudian untuk menyimpan data yang telah ditambahkan kilk save.
+
+![plot](./images/3.jpeg)
+
+Untuk mengedit data artist, kilk icon pensil.
+
+![plot](./images/4.jpeg)
+
+## Halaman Song
+
+Pada halaman song ini untuk menampilkan data lagu yang telah ditambahkan. Pada halaman ini juga dapat melakukan penghapusan data, yaitu dengan mengklik icon tempat sampah.
+
+![plot](./images/5.jpeg)
+
+Untuk menambahkan data song, klik button add pada pojok kanan bawah. Kemudian untuk menyimpan data yang telah ditambahkan kilk save.
+
+![plot](./images/6.jpeg)
+
+Untuk mengedit data song, kilk icon pensil.
+
+![plot](./images/7.jpeg)
+
+Untuk melihat detail lagu, klik pada lagu yang ingin dilihat. Maka akan muncul pop up yang berisikan detail lagu
+
+![plot](./images/8.jpeg)
