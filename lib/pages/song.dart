@@ -111,9 +111,65 @@ class SongState extends State<Song> {
                 ),
               ],
             ),
+            onTap: () async {
+              // untuk manmpilkan pop up detai song
+              showDialog(
+                context: context,
+                builder: (BuildContext context) =>
+                    _buildPopupDialog(context, index),
+              );
+            },
           ),
         );
       },
+    );
+  }
+
+  // Pop detail dong 
+  Widget _buildPopupDialog(BuildContext context, int index) {
+    return new AlertDialog(
+      title: const Text(
+        'Detail Song',
+        textAlign: TextAlign.center,
+      ),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            "Title: ",
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          Text(
+            this.itemList[index].title,
+          ),
+          Padding(padding: EdgeInsets.only(top: 20.0)),
+          Text(
+            "Performed by: ",
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          Text(
+            this.itemList[index].artistName,
+          ),
+          Padding(padding: EdgeInsets.only(top: 20.0)),
+          Text(
+            "Written by: ",
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          Text(
+            this.itemList[index].writer,
+          ),
+        ],
+      ),
+      actions: <Widget>[
+        new FlatButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          textColor: Theme.of(context).primaryColor,
+          child: Text('Close', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),),
+        ),
+      ],
     );
   }
 
