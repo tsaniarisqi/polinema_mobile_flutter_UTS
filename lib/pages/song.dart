@@ -24,9 +24,6 @@ class SongState extends State<Song> {
 
   @override
   Widget build(BuildContext context) {
-    if (itemList == null) {
-      itemList = List<SongItem>();
-    }
     return Scaffold(
       appBar: AppBar(
         title: Text('Song'),
@@ -87,6 +84,10 @@ class SongState extends State<Song> {
             title: Text(
               this.itemList[index].title,
               style: textStyle,
+            ),
+            subtitle: Text(
+              this.itemList[index].artistName,
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
             ),
             // widget yang akan menampilkan setelah title
             trailing: Row(

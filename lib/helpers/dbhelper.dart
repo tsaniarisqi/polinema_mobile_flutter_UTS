@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:daftar_lagu/models/artistItem.dart';
@@ -16,27 +17,32 @@ class DbHelper {
     String path = directory.path + 'daftarLagu.db';
 
     //create, read databases
-    var daftarLaguDatabase =
-        openDatabase(path, version: 1, onCreate: _createDb);
+    var daftarLaguDatabase = openDatabase(path,
+        version: 9, onCreate: _createDb, onUpgrade: _upgradeDb);
     //mengembalikan nilai object sebagai hasil dari fungsinya
     return daftarLaguDatabase;
+  }
+
+  void _upgradeDb(Database db, int oldVersion, int newVersion) async {
+    _createDb(db, newVersion);
   }
 
   // untuk membuat tabel pada database
   void _createDb(Database db, int version) async {
     var batchTemp = db.batch();
+    batchTemp.execute('DROP TABLE IF EXISTS artistItem');
+    batchTemp.execute('DROP TABLE IF EXISTS songItem');
     // tabel artistItem
-    await batchTemp.execute('''CREATE TABLE artistItem (
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          name TEXT)''');
+    batchTemp.execute('''CREATE TABLE artistItem (
+                  id INTEGER PRIMARY KEY AUTOINCREMENT,
+                  name TEXT)''');
     // tabel songItem
-    await batchTemp.execute('''CREATE TABLE songItem(
-          id INTEGER PRIMARY KEY AUTOINCREMENT, 
-          title TEXT, 
-          writer TEXT, 
-          artistId INTEGER, 
-          FOREIGN KEY (artistId) REFERENCES artistItem(id))''');
-    batchTemp.commit();
+    batchTemp.execute('''CREATE TABLE songItem (
+                  id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                  title TEXT, 
+                  artistName TEXT, 
+                  writer TEXT)''');
+    await batchTemp.commit();
   }
 
   //select data tabel ArtistItem
@@ -116,8 +122,6 @@ class DbHelper {
     }
     return itemList;
   }
-
-
 
   factory DbHelper() {
     if (_dbHelper == null) {
