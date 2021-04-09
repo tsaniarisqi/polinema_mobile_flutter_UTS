@@ -1,7 +1,7 @@
 import 'package:daftar_lagu/form/artistentryform.dart';
 import 'package:daftar_lagu/helpers/dbHelper.dart';
 import 'package:daftar_lagu/models/artistItem.dart';
-import 'package:daftar_lagu/pages/song.dart';
+import 'package:daftar_lagu/models/songItem.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
@@ -106,7 +106,8 @@ class ArtistState extends State<Artist> {
                   icon: Icon(Icons.delete),
                   onPressed: () async {
                     //TODO 3 Panggil Fungsi untuk Delete dari DB berdasarkan Item
-                    deleteItem(itemList[index]);
+                    deleteArtist(itemList[index], itemList[index]);
+                    updateListView();
                   },
                 ),
               ],
@@ -118,8 +119,8 @@ class ArtistState extends State<Artist> {
   }
 
   //delete Item
-  void deleteItem(ArtistItem object) async {
-    int result = await dbHelper.deleteArtistItem(object.id);
+  void deleteArtist(ArtistItem object, ArtistItem object2) async {
+    int result = await dbHelper.deleteArtistItem(object.id, object2.name);
     if (result > 0) {
       updateListView();
     }

@@ -90,9 +90,11 @@ class DbHelper {
   }
 
   //delete data tabel ArtistItem
-  Future<int> deleteArtistItem(int id) async {
+  Future<int> deleteArtistItem(int id, String artistName) async {
     Database db = await this.initDb();
     int count = await db.delete('artistItem', where: 'id=?', whereArgs: [id]);
+    int count1 = await db
+        .delete('songItem', where: 'artistName=?', whereArgs: [artistName]);
     return count;
   }
 
